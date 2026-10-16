@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#170d32">
+<title>Fatima's Magical Birthday ✨</title>
+<style>
+:root{--pink:#ff9acb;--gold:#ffe3a1;--ink:#170d32}
+*{box-sizing:border-box}
+body{margin:0;color:#fff;font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:radial-gradient(ellipse at 20% 10%,#563080 0,transparent 38%),radial-gradient(ellipse at 90% 30%,#6e285d 0,transparent 35%),linear-gradient(160deg,#100923,#211044 55%,#080719);min-height:100vh;overflow-x:hidden}
+#stars{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.star{position:absolute;color:#fff6c9;animation:twinkle 2.8s infinite ease-in-out alternate}
+@keyframes twinkle{from{opacity:.2;transform:scale(.7)}to{opacity:1;transform:scale(1.2)}}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-12px) rotate(4deg)}}
+@keyframes glow{0%,100%{box-shadow:0 0 15px #ff8acb55}50%{box-shadow:0 0 32px #ff8acbcc}}
+@keyframes pop{0%{transform:scale(.5);opacity:0}75%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}
+main{position:relative;z-index:1;width:min(720px,100%);margin:auto;padding:24px 17px 48px}
+.pill{display:inline-block;border:1px solid #ffffff30;background:#ffffff0d;border-radius:99px;padding:7px 13px;color:#ffe3f2;font-size:.8rem;letter-spacing:.08em}
+section{display:none;text-align:center;min-height:78vh;align-items:center;justify-content:center;flex-direction:column;gap:17px}
+section.active{display:flex;animation:pop .65s ease both}
+h1,h2,p{margin:0}
+h1{font-size:clamp(2.2rem,10vw,4.5rem);line-height:1.04;letter-spacing:-.04em}
+h2{font-size:clamp(1.65rem,7vw,2.5rem);line-height:1.12}
+p{color:#f5eafa;line-height:1.7;max-width:520px}
+.script{font-family:Georgia,serif;font-style:italic;color:var(--pink)}
+.big-heart{font-size:4.5rem;filter:drop-shadow(0 0 18px #ff8acb);animation:float 3s ease-in-out infinite}
+.btn{border:0;border-radius:999px;padding:14px 21px;background:linear-gradient(100deg,#ff8dc8,#ffd6a1);color:#32133e;font-weight:800;font-size:1rem;box-shadow:0 8px 28px #ff8acb38;cursor:pointer;min-height:48px}
+.btn.secondary{background:#ffffff12;border:1px solid #ffffff3d;color:white;box-shadow:none}
+.buttons{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:5px}
+.gift{font-size:6rem;animation:float 2.7s ease-in-out infinite;filter:drop-shadow(0 0 24px #ffb8df)}
+.card{width:100%;border:1px solid #ffffff26;background:#ffffff0d;border-radius:24px;padding:20px;backdrop-filter:blur(10px)}
+.gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;width:100%;margin-top:5px}
+.photo{border:1px solid #ffffff38;background:#ffffff10;border-radius:17px;overflow:hidden;min-height:155px;display:flex;align-items:center;justify-content:center;position:relative}
+.photo img{width:100%;height:100%;min-height:155px;max-height:280px;object-fit:cover;display:block}
+.photo .placeholder{padding:14px;color:#f4dff0;font-size:.9rem}
+.photo input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer}
+.note{font-size:.82rem;color:#e5d7f4}
+hr{width:65%;border:0;border-top:1px solid #ffffff28;margin:5px}
+.confetti{position:fixed;top:-20px;z-index:5;pointer-events:none;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:.15}}
+footer{text-align:center;color:#cdbbdd;font-size:.78rem;margin-top:12px}
+</style>
+</head>
+<body>
+<div id="stars" aria-hidden="true"></div>
+<main>
+<section class="active" id="s1">
+  <span class="pill">A LITTLE MAGIC, JUST FOR YOU</span>
+  <div class="big-heart">♡</div>
+  <h1 class="script">Happy Birthday,<br><span style="font-style:normal;color:#fff">Fatima</span> ✨</h1>
+  <p>A tiny magical world has been made just for you. Ready to discover your surprise?</p>
+  <button class="btn" onclick="go(2)">Open Your Surprise ✨</button>
+  <span class="note">Turn your sound on for a little extra magic ♡</span>
+</section>
+<section id="s2">
+  <span class="pill">SECRET NO. 1</span>
+  <div class="gift">🎁</div>
+  <h2>A little gift, a lot of love</h2>
+  <p>Some surprises are wrapped in paper. This one is wrapped in wishes, smiles, and a whole sky full of stars.</p>
+  <div class="card"><p class="script" style="font-size:1.25rem">“May your new year of life be full of beautiful moments, kind people, and dreams that come true.”</p></div>
+  <div class="buttons"><button class="btn" onclick="go(3)">Unlock the next secret 💫</button><button class="btn secondary" onclick="go(1)">Back</button></div>
+</section>
+<section id="s3">
+  <span class="pill">SECRET NO. 2</span>
+  <h2 class="script">A little memory gallery 📸</h2>
+  <p>Add your favourite photos in the frames below. On this phone, choose a photo from your gallery for each frame.</p>
+  <div class="gallery">
+    <label class="photo" id="frame1"><span class="placeholder">＋<br>Choose photo 1</span><input aria-label="Choose first photo" type="file" accept="image/*" onchange="preview(this,'frame1')"></label>
+    <label class="photo" id="frame2"><span class="placeholder">＋<br>Choose photo 2</span><input aria-label="Choose second photo" type="file" accept="image/*" onchange="preview(this,'frame2')"></label>
+    <label class="photo" id="frame3"><span class="placeholder">＋<br>Choose photo 3</span><input aria-label="Choose third photo" type="file" accept="image/*" onchange="preview(this,'frame3')"></label>
+    <label class="photo" id="frame4"><span class="placeholder">＋<br>Choose photo 4</span><input aria-label="Choose fourth photo" type="file" accept="image/*" onchange="preview(this,'frame4')"></label>
+  </div>
+  <p class="note">Important: photos selected here preview on this device only. To make them appear for Fatima after publishing, follow the photo instructions in README.txt.</p>
+  <div class="buttons"><button class="btn" onclick="go(4)">One last surprise 💗</button><button class="btn secondary" onclick="go(2)">Back</button></div>
+</section>
+<section id="s4">
+  <span class="pill">THE FINAL SURPRISE</span>
+  <div class="big-heart">💖</div>
+  <h2>For you, Fatima</h2>
+  <div class="card">
+    <p>On your special day, I hope life gives you countless reasons to smile. May your heart stay hopeful, your dreams keep growing, and the year ahead bring you peace, happiness, and beautiful surprises.</p>
+    <hr><p class="script" style="font-size:1.35rem">You deserve a day as lovely as your smile. Happy Birthday! 🎂✨</p>
+  </div>
+  <button class="btn" onclick="celebrate()">Make a wish ✨</button>
+  <p id="wish" class="script" aria-live="polite"></p>
+  <button class="btn secondary" onclick="go(1)">Experience the magic again ↻</button>
+</section>
+<footer>Made with care, just for Fatima ♡</footer>
+</main>
+<script>
+const starBox=document.getElementById('stars');
+for(let i=0;i<65;i++){const s=document.createElement('span');s.className='star';s.textContent=Math.random()>.5?'✦':'·';s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';s.style.fontSize=(8+Math.random()*15)+'px';s.style.animationDelay=(Math.random()*3)+'s';starBox.appendChild(s)}
+function go(n){document.querySelectorAll('main section').forEach(s=>s.classList.remove('active'));document.getElementById('s'+n).classList.add('active');window.scrollTo({top:0,behavior:'smooth'});if(n===4)confetti(45)}
+function preview(input,id){if(!input.files||!input.files[0])return;const file=input.files[0];if(!file.type.startsWith('image/'))return;const frame=document.getElementById(id);let img=frame.querySelector('img');if(!img){img=document.createElement('img');frame.insertBefore(img,frame.querySelector('input'))}img.src=URL.createObjectURL(file);const ph=frame.querySelector('.placeholder');if(ph)ph.style.display='none'}
+function confetti(count){const shapes=['✦','♥','✧','❀'];for(let i=0;i<count;i++){const e=document.createElement('span');e.className='confetti';e.textContent=shapes[Math.floor(Math.random()*shapes.length)];e.style.left=Math.random()*100+'vw';e.style.animationDuration=(2.5+Math.random()*3)+'s';e.style.fontSize=(12+Math.random()*18)+'px';e.style.color=['#ff9acb','#ffe3a1','#d7b8ff','#ffffff'][i%4];document.body.appendChild(e);setTimeout(()=>e.remove(),6000)}}
+function celebrate(){document.getElementById('wish').textContent='May your wish find its way to the stars. 🌟';confetti(90)}
+</script>
+</body>
+</html>
